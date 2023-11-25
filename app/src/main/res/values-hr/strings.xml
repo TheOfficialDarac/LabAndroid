@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LabV1</string>
+    <string name="next_button">Dalje</string>
+    <string name="first_name_input">Ime</string>
+    <string name="last_name_input">Prezime</string>
+    <string name="birth_date">Datum rodenja</string>
+    <string name="subject">Predmet</string>
+    <string name="professor_name">Profesor</string>
+    <string name="number_of_lessons">Broj Predavanja</string>
+    <string name="number_of_lab_lessons">Broj Laboratorijskih Vjezbi</string>
+    <string name="is_optional">Predmet je Izborni</string>
+    <string name="to_home">Pocetna stranica</string>
+    <string name="all_content">Sadrzaj</string>
+</resources>

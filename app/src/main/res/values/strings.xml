@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">LV1</string>
+    <string name="next_button">Next</string>
+    <string name="first_name_input">First Name</string>
+    <string name="last_name_input">Last Name</string>
+    <string name="birth_date">Date Of Birth</string>
+    <string name="subject">Subject</string>
+    <string name="professor_name">Name Of Professor</string>
+    <string name="number_of_lessons">Number Of Lessons</string>
+    <string name="number_of_lab_lessons">Number Of Lab Lessons</string>
+    <string name="is_optional">Is Optional</string>
+    <string name="to_home">Home</string>
+    <string name="all_content">Contents</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

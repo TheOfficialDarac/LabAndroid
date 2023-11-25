@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LV1</string>
+    <string name="next_button">Naechste</string>
+    <string name="first_name_input">Vorname</string>
+    <string name="last_name_input">Nachname</string>
+    <string name="birth_date">Geburtstag</string>
+    <string name="subject">Fach</string>
+    <string name="professor_name">Name von Professor</string>
+    <string name="number_of_lessons">Anzahl der Lektionen</string>
+    <string name="number_of_lab_lessons">Anzahl der Laborstunden</string>
+    <string name="is_optional">Ist freiwillig</string>
+    <string name="to_home">Startseite</string>
+    <string name="all_content">Inhalt</string>
+</resources>
