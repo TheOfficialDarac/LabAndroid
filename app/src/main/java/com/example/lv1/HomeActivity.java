@@ -1,38 +1,41 @@
 package com.example.lv1;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.lifecycle.ProcessCameraProvider;
+import androidx.camera.view.PreviewView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.LocaleList;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.common.util.concurrent.ListenableFuture;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
 
 public class HomeActivity extends AppCompatActivity {
 
     ArrayList<Student> student;
     Spinner spinnerBtn;
+
+    Button camera_capture_button;
+    PreviewView view_finder;
+    ExecutorService executor;
+    ImageCapture imageCapture;
+    File outputDirectory;
+    //dio sa camerax - preview
+    ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         btnNxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PersonalInfoActivity.class);
+                Intent i = new Intent(getApplicationContext(), CreateNewRecordActivity.class);
 
                 startActivity(i);
             }
@@ -95,5 +98,109 @@ public class HomeActivity extends AppCompatActivity {
                 return;
             }
         });
+//        camera_capture_button = this.findViewById(R.id.image_capture_button);
+//        view_finder = this.findViewById(R.id.viewFinder);
+//
+//        camera_capture_button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                @SuppressLint("RestrictedApi") File photoFile = new File(getBaseContext().getExternalCacheDir() + File.separator + System.currentTimeMillis() + ".png");
+//                String name = new SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis());
+//
+//                ContentValues contentValues = new ContentValues();
+//                contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, name);
+//                contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg");
+//                if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+//                    contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image");
+//                }
+//                //dio sa camerax - capture
+//                ImageCapture.OutputFileOptions outputOptions = new ImageCapture.OutputFileOptions.Builder(getContentResolver(), MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues).build();
+//                imageCapture.takePicture(outputOptions, executor,
+//                        new ImageCapture.OnImageSavedCallback() {
+//                            @Override
+//                            public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+//                                Uri savedUri = Uri.fromFile(photoFile);
+//                                //Toast.makeText(MainActivity.this, "radi", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onError(@NonNull ImageCaptureException exception) {
+//                                Log.d("myTag", exception.getMessage());
+//                            }
+//                        });
+//            }
+//        });
+//    }
+//
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == REQUEST_CODE_CAMERA_PERMISSION) {
+//            if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+//                Toast.makeText(this, "You can't use image classification example without granting CAMERA permission", Toast.LENGTH_LONG).show();
+//                finish();
+//            } else {
+//                startCamera();
+//            }
+//        }
     }
+
+//    private void startCamera() {
+//        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
+//        cameraProviderFuture.addListener(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
+//                    bindPreview(cameraProvider);
+//                }catch (ExecutionException | InterruptedException e){
+//
+//                }
+//            }
+//        }, ContextCompat.getMainExecutor(this));
+//    }
+//
+//    void bindPreview(@NonNull ProcessCameraProvider cameraProvider) {
+//
+//        Preview preview = new Preview.Builder()
+//                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+//                .build();
+//
+//        CameraSelector cameraSelector = new CameraSelector.Builder()
+//                .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+//                .build();
+//
+//        executor = Executors.newSingleThreadExecutor();
+//
+//        imageCapture = new ImageCapture.Builder().build();
+//
+//
+//        cameraProvider.unbindAll();
+//        Camera camera = cameraProvider.bindToLifecycle((LifecycleOwner)this,
+//                cameraSelector, preview,imageCapture);
+//
+//        preview.setSurfaceProvider(view_finder.getSurfaceProvider());
+//
+//    }
+//
+//
+//
+//    private long mLastAnalysisResultTime;
+//    private static final int REQUEST_CODE_CAMERA_PERMISSION = 200;
+//    private static final String[] PERMISSIONS = {android.Manifest.permission.CAMERA};
+//
+//    private static final String TAG = "CameraXBasic";
+//    private static final String FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS";
+//    private boolean checkPermission() {
+//        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(
+//                    this,
+//                    PERMISSIONS,
+//                    REQUEST_CODE_CAMERA_PERMISSION);
+//            return false;
+//        }
+//        return true;
+//    }
 }
